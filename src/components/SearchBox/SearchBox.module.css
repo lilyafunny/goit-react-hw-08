@@ -1,0 +1,14 @@
+.input {
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.input:hover,
+:focus {
+    border-color: blue;
+}
+
+.box {
+    margin-bottom: 20px;
+}

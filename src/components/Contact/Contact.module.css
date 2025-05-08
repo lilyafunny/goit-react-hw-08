@@ -1,0 +1,19 @@
+.text {
+    padding-right: 5px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+p {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    height: 30px;
+}
