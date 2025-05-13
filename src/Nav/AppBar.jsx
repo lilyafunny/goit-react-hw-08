@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../src/redux/auth/selectors";
+import { selectIsLoggedIn } from "../redux/auth/selectors";
 import Navigation from './Navigation'
 import AuthNav from './AuthNav'
 import UserMenu from './UserMenu'

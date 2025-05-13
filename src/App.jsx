@@ -4,7 +4,7 @@ import Register from './pages/RegistrationPage/RegistrationPage'
 import Contacts from './pages/ContactsPage/ContactsPage'
 
 import { Routes, Route } from 'react-router-dom'
-import Layout from '../Nav/Layout'
+import Layout from './Nav/Layout'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { refreshUser } from './redux/auth/operations'
