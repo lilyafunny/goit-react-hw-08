@@ -1,35 +1,38 @@
-import s from './App.module.css'
-import ContactForm from "./components/ContactForm/ContactForm"
-import SearchBox from "./components/SearchBox/SearchBox"
-import ContactList from "./components/ContactList/ContactList"
-import { useDispatch, useSelector } from 'react-redux'
+import Home from './pages/HomePage/HomePage'
+import Login from './pages/LoginPage/LoginPage'
+import Register from './pages/RegistrationPage/RegistrationPage'
+import Contacts from './pages/ContactsPage/ContactsPage'
+
+import { Routes, Route } from 'react-router-dom'
+import Layout from '../Nav/Layout'
 import { useEffect } from 'react'
-import { fetchContacts } from "./redux/contactsOps"
-import { selectError, selectIsLoading } from './redux/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { refreshUser } from './redux/auth/operations'
+import { selectIsRefreshing } from './redux/auth/selectors'
+import PrivateRoute from '../PrivateRoute'
+import RestrictedRoute from '../RestrictedRoute'
 
 const App = () => {
 
   const dispatch = useDispatch();
-
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
-
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-
-
-  return (
-    <div className={s.contanier}>
-      <h1 className={s.title}>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      {isLoading && !error && <b>Loading...</b>}
-      <ContactList />
-    </div>
+  return isRefreshing ? null : (
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='contacts' element={<PrivateRoute><Contacts /></PrivateRoute>} />
+        </Route>
+        <Route path='/login' element={<RestrictedRoute component={<Login />} redirectTo='/contacts' />} />
+        <Route path='/register' element={<RestrictedRoute component={<Register />} redirectTo='/contacts' />} />
+      </Routes>
+    </>
   )
 }
 
 export default App
+

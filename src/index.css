@@ -1,3 +1,9 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: caramellatte --default;
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.5;
